@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 const { withAuthApi } = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -11,9 +11,10 @@ router.get('/', (req, res) => {
       'title',
       'body',
       'created_at',
-      'updated_at'
+      'updated_at',
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
     ],
-    order: [['created_at', 'DESC']],
+    order: [['created_at', 'DESC'], ['id', 'DESC']],
     include: [
       {
         model: User,
@@ -44,6 +45,14 @@ router.get('/:id', (req, res) => {
       {
         model: User,
         attributes: ['username']
+      },
+      {
+        model: Comment,
+        attributes: ['comment_text', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
       }
     ]
   })

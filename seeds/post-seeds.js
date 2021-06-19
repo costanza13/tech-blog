@@ -1,4 +1,3 @@
-const sequelize = require('../config/connection');
 const { Post } = require('../models');
 
 const postdata = [
@@ -10,6 +9,11 @@ const postdata = [
   {
     title: 'Second Seed Post',
     body: 'This is the body of the second seed post. Only a bit different from the first.',
+    user_id: 2
+  },
+  {
+    title: 'Third Seed Post',
+    body: 'This is the body of the third seed post. Feel free to do stuff with these seed posts.',
     user_id: 2
   }
 ];
