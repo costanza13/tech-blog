@@ -1,8 +1,14 @@
 {{#each posts}}
 <article class="card mb-3">
   <div class="card-header">
-    <h2 class="card-title">{{title}}</h2>
-    <small>Posted by {{user.username}} on {{format_date created_at}}</small>
+    <div class="row">
+      <div class="col-12 col-md-7">
+        <h2 class="card-title">{{title}}</h2>
+      </div>
+      <div class="col-12 col-md-5 text-end text-muted byline">
+        Posted by {{user.username}} on {{format_date created_at}}
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <p class="card-text">{{body}}</p>

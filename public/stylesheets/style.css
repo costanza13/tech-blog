@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 header {
   background-color: azure;
   margin: 0 0 20px;
@@ -8,4 +12,12 @@ header {
 content {
   padding: 20px 10%;
   width: 100%;
+}
+
+.sign-in, .sign-up {
+  width: 18rem;
+}
+
+.byline {
+  font-size: 60%;
 }
