@@ -1,1 +1,12 @@
-<h1>Hello World</h1>
+{{#each posts}}
+<article class="card mb-3">
+  <div class="card-header">
+    <h2 class="card-title">{{title}}</h2>
+    <small>Posted by {{user.username}} on {{format_date created_at}}</small>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{body}}</p>
+    <p><a href="post/{{id}}">{{comment_count}} {{format_plural 'comment' comment_count}}</a></p>
+  </div>
+</article>
+{{/each}}
