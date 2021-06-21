@@ -1,0 +1,34 @@
+<section class="card mb-3 comments">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="card-title">Comments</h3>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    {{#each comments}}
+    <section class="comment p-1 mb-2">
+      <div class="meta text-muted comment-byline">
+        {{user.username}} on {{format_date created_at}} at {{format_time created_at}}
+      </div>
+      <div class="text ms-2">
+        {{comment_text}}
+      </div>
+    </section>
+    {{/each}}
+    {{#if loggedIn}}
+    <form class="comment-form mt-4 pt-4 border-top">
+      <div class="mb-3">
+        <textarea name="comment-body" class="form-control" placeholder="Leave a comment..."></textarea>
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">add comment</button>
+      </div>
+    </form>
+    {{/if}}
+  </div>
+</section>
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{/if}}

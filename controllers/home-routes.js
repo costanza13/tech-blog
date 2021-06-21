@@ -40,4 +40,41 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/post/:id', (req, res) => {
+  Post.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'title',
+      'body',
+      'created_at',
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
+      },
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
+    .then(dbPostData => {
+      const post = dbPostData.get({ plain: true });
+      res.render('single-post', { post, loggedIn: req.session.loggedIn });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
