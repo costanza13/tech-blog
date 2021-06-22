@@ -41,7 +41,8 @@ async function loginFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      // added 1-second delay, because immediate redirect creates race condition with cookie storage
+      setTimeout(() => { document.location.replace('/'); }, 1);
     } else {
       alert(response.statusText);
     }
