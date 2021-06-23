@@ -18,7 +18,7 @@ router.get('/', withAuth, (req, res) => {
     include: [
       {
         model: User,
-        attributes: ['username']
+        attributes: ['id', 'username']
       }
     ]
   })
@@ -55,13 +55,13 @@ router.get('/edit/:id', withAuth, (req, res) => {
       },
       {
         model: User,
-        attributes: ['username']
+        attributes: ['id', 'username']
       }
     ]
   })
     .then(dbPostData => {
       const post = dbPostData.get({ plain: true });
-      console.log('edit post: ', post);
+      // console.log('edit post: ', post);
       res.render('edit-post', { post, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
