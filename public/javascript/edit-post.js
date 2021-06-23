@@ -2,38 +2,28 @@ async function editFormHandler(event) {
   event.preventDefault();
 
   let post_id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-  if (typeof post_id !== 'number') {
-    post_id = 0;
+  if (typeof parseInt(post_id) !== 'number') {
+    console.log(post_id + ' is not a number');
+    post_id = false;
   }
 
   const title = document.querySelector('input[name="post-title"]').value.trim();
   const post_body = document.querySelector('textarea[name="post-body"]').value.trim();
 
   if (title) {
-    if (post_id) {
-      const response = await fetch(`/api/posts/${post_id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          title,
-          post_body
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
-    } else {
-      const response = await fetch(`/api/posts`, {
-        method: 'POST',
-        body: JSON.stringify({
-          title,
-          post_body
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
+    const response = await fetch('/api/posts' + (post_id ? `/${post_id}` : ''), {
+      method: (post_id ? 'PUT' : 'POST'),
+      body: JSON.stringify({
+        title,
+        post_body
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    });
 
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert(response.statusText);
-      }
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert(response.statusText);
     }
   }
 }
