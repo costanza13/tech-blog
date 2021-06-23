@@ -2,7 +2,8 @@ async function editFormHandler(event) {
   event.preventDefault();
 
   let post_id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-  if (typeof parseInt(post_id) !== 'number') {
+  console.log(typeof parseInt(post_id));
+  if (isNaN(post_id)) {
     console.log(post_id + ' is not a number');
     post_id = false;
   }
@@ -11,8 +12,11 @@ async function editFormHandler(event) {
   const post_body = document.querySelector('textarea[name="post-body"]').value.trim();
 
   if (title) {
-    const response = await fetch('/api/posts' + (post_id ? `/${post_id}` : ''), {
-      method: (post_id ? 'PUT' : 'POST'),
+    const apiUrl = '/api/posts' + (post_id ? `/${post_id}` : '');
+    const apiMethod = post_id ? 'PUT' : 'POST';
+    console.log(apiMethod, apiUrl);
+    const response = await fetch(apiUrl, {
+      method: apiMethod,
       body: JSON.stringify({
         title,
         post_body
