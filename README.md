@@ -20,6 +20,12 @@ A CMS-style blog site designed with the developer/blogger in mind. Publish artic
 * Clicking on the "Sign Out" option in the navigation ends the user's session and replaces the "Sign Out" option with "Sign In".
 * If a user is idle on the page for more than a set time (set in `public/javascript/logout.js`), the user is automatically signed out of the site.
 
+## Screenshots
+<img src="./public/media/the-tech-blog-home.png" width="47%" alt="home page, with recent posts" />
+<img src="./public/media/the-tech-blog-post.png" width="47%" alt="single post page, with comments" /><br>
+<img src="./public/media/the-tech-blog-dashboard.png" width="47%" alt="dahsboard, with user's posts" />
+<img src="./public/media/the-tech-blog-edit.png" width="47%" alt="post edit page" />
+
 ## Installation
 1) Make sure you're running a recent version of [Node.js](https://nodejs.org/en/) (app built on v14.16.1)
 2) Clone the repository at https://github.com/costanza13/tech-blog
