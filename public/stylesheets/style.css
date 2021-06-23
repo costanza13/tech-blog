@@ -2,7 +2,7 @@
   display: none;
 }
 
-a:link, a:visited {
+a:link, a:visited, .nav-link {
   color: #1a4884;
   text-decoration: none;
 }
