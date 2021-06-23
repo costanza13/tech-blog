@@ -6,5 +6,9 @@
 {{>post-info}}
 {{/each}}
 {{else}}
+{{#if username}}
 <p class="p-1 text-muted"><em>{{username}} hasn't written any posts.</em></p>
+{{else}}
+<p class="p-1 text-muted"><em>No posts.</em></p>
+{{/if}}
 {{/if}}
