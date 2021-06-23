@@ -1,19 +1,23 @@
 <article class="mb-5">
-  <a href="/dashboard"> &larr; Back to dashboard</a>
+  <p class="mb-4"><a href="/dashboard"> &larr; Back to dashboard</a></p>
   <h2>Edit Post</h2>
 
-  <form class="edit-post-form mt-4 pt-4 border-top">
+  <form class="edit-post-form mt-2 pt-3">
     <div class="mb-3">
-      <input type="text" name="post-title" class="form-control" {{#if post.id}}value="{{post.title}}" {{/if}} placeholder="Post Title" />
+      <input type="text" name="post-title" class="form-control" {{#if post.id}}value="{{post.title}}" {{/if}}
+        placeholder="Post Title" />
     </div>
-    <div class="mb-3">
-      <textarea name="post-body" class="form-control" placeholder="Post content...">{{#if post.body}}{{post.body}}{{/if}}</textarea>
+    <div class="mb-2">
+      <textarea name="post-body" class="form-control" rows="5"
+        placeholder="Post content...">{{#if post.body}}{{post.body}}{{/if}}</textarea>
     </div>
     <div class="mb-3">
       {{#if post.id}}
-      by you on {{format_date post.created_at}}
-      |
-      <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural 'comment' post.comments.length}}</a>
+      <p class="p-1">
+        by you on {{format_date post.created_at}}
+        |
+        <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural 'comment' post.comments.length}}</a>
+      </p>
       {{/if}}
     </div>
     <div class="mb-3">

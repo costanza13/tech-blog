@@ -30,12 +30,12 @@ header {
 }
 
 .site-subtitle {
-  font-size: 80%;
+  font-size: 90%;
   text-align: right;
 }
 
 content {
-  padding: 20px 10%;
+  padding: 0 10%;
   width: 100%;
 }
 

@@ -54,11 +54,25 @@ router.get('/user/:id', (req, res) => {
     ]
   })
     .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      // console.log(req.session.loggedIn);
-      console.log(posts[0]);
-      const username = posts[0].user.username;
-      res.render('homepage', { posts, loggedIn: req.session.loggedIn, username });
+      User.findOne({
+        where: {
+          id: req.params.id
+        },
+        attributes: ['username']
+      })
+        .then(dbUserData => {
+          if (dbUserData) {
+            const posts = dbPostData.map(post => post.get({ plain: true }));
+            const username = dbUserData.dataValues.username;
+            res.render('homepage', { posts, loggedIn: req.session.loggedIn, username });
+          } else {
+            res.render('error', { status: 404, message: 'User not found' });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+        });
     })
     .catch(err => {
       console.log(err);

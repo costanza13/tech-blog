@@ -10,6 +10,11 @@ const commentdata = [
     comment_text: 'A second one, so that we can see how a second one makes things look.',
     user_id: 2,
     post_id: 3
+  },
+  {
+    comment_text: 'Wasn\'t there a joke about closing all the windows and restarting your car, after a crash?',
+    user_id: 5,
+    post_id: 5
   }
 ];
 

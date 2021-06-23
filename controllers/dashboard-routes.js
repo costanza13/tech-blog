@@ -24,7 +24,7 @@ router.get('/', withAuth, (req, res) => {
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render('dashboard', { posts, loggedIn: req.session.loggedIn });
+      res.render('dashboard', { posts, loggedIn: req.session.loggedIn, username: req.session.username });
     })
     .catch(err => {
       console.log(err);
@@ -35,7 +35,8 @@ router.get('/', withAuth, (req, res) => {
 router.get('/edit/:id', withAuth, (req, res) => {
   Post.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
+      user_id: req.session.user_id
     },
     attributes: [
       'id',
@@ -60,9 +61,12 @@ router.get('/edit/:id', withAuth, (req, res) => {
     ]
   })
     .then(dbPostData => {
-      const post = dbPostData.get({ plain: true });
-      // console.log('edit post: ', post);
-      res.render('edit-post', { post, loggedIn: req.session.loggedIn });
+      if (dbPostData) {
+        const post = dbPostData.get({ plain: true });
+        res.render('edit-post', { post, loggedIn: req.session.loggedIn });
+      } else {
+        res.render('error', { status: 404, message: 'The specified post was not found or does not belong to you.' });
+      }
     })
     .catch(err => {
       console.log(err);

@@ -1,6 +1,10 @@
 {{#if username}}
 <h2 class="mb-3">{{username}}'s Posts</h2>
 {{/if}}
+{{#if posts}}
 {{#each posts}}
 {{>post-info}}
 {{/each}}
+{{else}}
+<p class="p-1 text-muted"><em>{{username}} hasn't written any posts.</em></p>
+{{/if}}
