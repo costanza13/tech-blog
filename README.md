@@ -19,3 +19,37 @@ A CMS-style blog site designed with the developer/blogger in mind. Publish artic
 * Clicking on the "Edit post" button for an existing post in the dashboard allows to delete or update the post, and returns the user to the updated dashboard.
 * Clicking on the "Sign Out" option in the navigation ends the user's session and replaces the "Sign Out" option with "Sign In".
 * If a user is idle on the page for more than a set time (set in `public/javascript/logout.js`), the user is automatically signed out of the site.
+
+## Installation
+1) Make sure you're running a recent version of [Node.js](https://nodejs.org/en/) (app built on v14.16.1)
+2) Clone the repository at https://github.com/costanza13/tech-blog
+3) Run `npm install` in the project root directory
+4) Make sure you have MySQL installed
+5) Copy/rename the sample `.env.example` file to `.env` and replace the values with your MySQL connection details
+6) Run the following to create the `tech_blog_db` database
+  > `mysql -u <db_user> -p db/schema.sql`
+7) For testing purposes, seed the database using the following command:
+  > `npm run seed`
+
+## Running the eCommerce Back End
+- Run `npm start` from the project's root directory
+
+## Technologies Used
+* Node.js
+* Express (web server)
+* Sequelize (ORM)
+* MySQL
+
+## Credits
+
+This app uses the following very helpful NPM packages:
+- [Sequelize.js](https://www.npmjs.com/package/sequelize)
+- [Node MySQL 2](https://www.npmjs.com/package/mysql2)
+- [Express](https://www.npmjs.com/package/express)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [handlebars](https://www.npmjs.com/package/handlebars)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+
+## Links
+* GitHub: [costanza13/tech-blog](https://github.com/costanza13/tech-blog)
+* Deployed at: https://the-tech-blog-12hundred.herokuapp.com/
