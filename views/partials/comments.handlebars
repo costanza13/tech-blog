@@ -30,6 +30,10 @@
         <button type="submit" class="btn btn-primary">add comment</button>
       </div>
     </form>
+    {{else}}
+    {{#unless comments}}
+    <p class="p-1 text-muted"><em>No comments.</em></p>
+    {{/unless}}
     {{/if}}
   </div>
 </section>
