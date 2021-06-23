@@ -17,14 +17,48 @@ router.get('/', (req, res) => {
     include: [
       {
         model: User,
-        attributes: ['username']
+        attributes: ['id', 'username']
       }
     ]
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
-      console.log(req.session.loggedIn);
+      // console.log(req.session.loggedIn);
       res.render('homepage', { posts, loggedIn: req.session.loggedIn });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/user/:id', (req, res) => {
+  Post.findAll({
+    where: {
+      user_id: req.params.id
+    },
+    attributes: [
+      'id',
+      'title',
+      'body',
+      'created_at',
+      'updated_at',
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
+    ],
+    order: [['created_at', 'DESC'], ['id', 'DESC']],
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'username']
+      }
+    ]
+  })
+    .then(dbPostData => {
+      const posts = dbPostData.map(post => post.get({ plain: true }));
+      // console.log(req.session.loggedIn);
+      console.log(posts[0]);
+      const username = posts[0].user.username;
+      res.render('homepage', { posts, loggedIn: req.session.loggedIn, username });
     })
     .catch(err => {
       console.log(err);
@@ -63,7 +97,7 @@ router.get('/post/:id', (req, res) => {
       },
       {
         model: User,
-        attributes: ['username']
+        attributes: ['id', 'username']
       }
     ]
   })

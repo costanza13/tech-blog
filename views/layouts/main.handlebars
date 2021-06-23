@@ -11,30 +11,32 @@
 </head>
 
 <body>
-  <div class="wrapper container-fluid">
-    <main>
-      <header class="row">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            {{#if loggedIn}}
-            <button id="logout" class="btn btn-link nav-link">Sign Out</button>
-            {{else}}
-            <a class="nav-link" href="/login">Sign In</a>
-            {{/if}}
-          </li>
-        </ul>
-        <div class="w-auto">
-          <h1 class="card-title site-title">The Tech Blog</h1>
-          <p class="site-subtitle">A blog about technology.</p>
+  <div class="wrapper">
+    <main class="container-fluid px-0">
+      <header class="row gx-0">
+        <div class="col">
+          <ul class="nav flex-row-reverse">
+            <li class="nav-item">
+              {{#if loggedIn}}
+              <button id="logout" class="btn btn-link nav-link">Sign Out</button>
+              {{else}}
+              <a class="nav-link" href="/login">Sign In</a>
+              {{/if}}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+          </ul>
+          <div class="d-inline-block">
+            <h1 class="card-title site-title">The Tech Blog</h1>
+            <p class="site-subtitle">The blog about technology.</p>
+          </div>
         </div>
       </header>
-      <content class="row">
+      <content class="row gx-0">
         <div class="col-12">
           {{{ body }}}
         </div>

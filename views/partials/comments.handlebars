@@ -2,23 +2,27 @@
   <div class="card-header">
     <div class="row">
       <div class="col-12">
-        <h3 class="card-title">Comments</h3>
+        <h4 class="card-title">Comments</h4>
       </div>
     </div>
   </div>
   <div class="card-body">
+    {{#if comments}}
+    <ul class="list-group mb-4 comments">
     {{#each comments}}
-    <section class="comment p-1 mb-2">
+    <li class="list-group-item border-0 border-bottom mb-2 comment">
       <div class="meta text-muted comment-byline">
         {{user.username}} on {{format_date created_at}} at {{format_time created_at}}
       </div>
-      <div class="text ms-2">
+      <div class="text ms-2 p-2">
         {{comment_text}}
       </div>
-    </section>
+    </li>
     {{/each}}
+    </ul>
+    {{/if}}
     {{#if loggedIn}}
-    <form class="comment-form mt-4 pt-4 border-top">
+    <form class="comment-form">
       <div class="mb-3">
         <textarea name="comment-body" class="form-control" placeholder="Leave a comment..."></textarea>
       </div>

@@ -2,8 +2,17 @@
   display: none;
 }
 
-a:link {
+a:link, a:visited {
+  color: #1a4884;
   text-decoration: none;
+}
+
+a:hover, a:active {
+  color: #0351b6;
+}
+
+.btn.btn-primary {
+  color: white;
 }
 
 header {
@@ -35,9 +44,13 @@ content {
 }
 
 .post-byline {
-  font-size: 70%;
+  font-size: 80%;
 }
 
 .comment-byline {
   font-size: 90%;
+}
+
+.department {
+  font-weight: bold;
 }

@@ -53,11 +53,20 @@ const userdata = [
   },
   {
     username: 'costanza',
-    email: 'costanza@noemail.com',
+    email: 'costanza@fake-email.com',
     password: 'georgie'
+  },
+  {
+    username: 'masnick',
+    email: 'masnick@fake-email.com',
+    password: 'dirttech'
   }
 ];
 
-const seedUsers = () => User.bulkCreate(userdata, { individualHooks: true });
+const seedUsers = async () => {
+  for (let i = 0; i < userdata.length; i++) {
+    await User.create(userdata[i], { individualHooks: true });
+  }
+}
 
 module.exports = seedUsers;

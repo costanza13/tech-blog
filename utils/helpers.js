@@ -4,7 +4,13 @@ module.exports = {
   },
 
   format_time: date => {
-    return `${new Date(date).getHours()}:${('' + new Date(date).getMinutes()).padStart(2, 0)}`;
+    let hours = new Date(date).getHours();
+    let amPm = 'am';
+    if (hours > 12) {
+      hours -= 12;
+      amPm = 'pm';
+    }
+    return `${hours}:${('' + new Date(date).getMinutes()).padStart(2, 0)}${amPm}`;
   },
 
   format_plural: (word, amount) => {
