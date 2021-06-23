@@ -17,7 +17,7 @@ async function signupFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('nextUrl');
     } else {
       alert(response.statusText);
     }
@@ -42,9 +42,20 @@ async function loginFormHandler(event) {
 
     if (response.ok) {
       // added 1-second delay, because immediate redirect creates race condition with cookie storage
-      setTimeout(() => { document.location.replace('/'); }, 1);
+      setTimeout(() => { document.location.replace(nextUrl); }, 1);
     } else {
       alert(response.statusText);
+    }
+  }
+}
+
+let nextUrl = '/';
+if (document.location.search) {
+  const qsParams = document.location.search.substr(1).split('&');
+  for (let i = 0; i < qsParams.length; i++) {
+    const [name, value] = qsParams[i].split('=');
+    if (name === '_next') {
+      nextUrl = value;
     }
   }
 }
