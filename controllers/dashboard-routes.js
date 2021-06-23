@@ -15,6 +15,7 @@ router.get('/', withAuth, (req, res) => {
       'created_at',
       [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
     ],
+    order: [['created_at', 'DESC'], ['id', 'DESC']],
     include: [
       {
         model: User,
